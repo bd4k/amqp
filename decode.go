@@ -465,6 +465,8 @@ func readListHeader(r *buffer) (length int, _ error) {
 		}
 		length = int(binary.BigEndian.Uint32(buf[4:8]))
 	default:
+		// TODO kill panic
+		panic(errorErrorf("type code %#02x is not a recognized list type", type_))
 		return 0, errorErrorf("type code %#02x is not a recognized list type", type_)
 	}
 
@@ -505,6 +507,8 @@ func readArrayHeader(r *buffer) (length int, _ error) {
 		}
 		length = int(binary.BigEndian.Uint32(buf[4:8]))
 	default:
+		// TODO kill panic
+		panic(errorErrorf("type code %#02x is not a recognized list type", type_))
 		return 0, errorErrorf("type code %#02x is not a recognized list type", type_)
 	}
 	return length, nil
